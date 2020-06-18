@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>playing with flex box</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+        <style>
+        .panels{
+            display: flex;
+            flex-direction: row;
+            height:100vh;
+        }
+        .panel{
+            flex-grow:1;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color:white;
+            font-family: 'Caveat', cursive;
+            transition: 
+                font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+                flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+                background 0.2s;       
+            display: flex;
+            flex-direction: column;
+            line-height: 150px;
+                
+        }
+        .panel1{
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT3MrFUCtZ48So7QMQA0pwWp_9OuE3aiRiiqk5HVR-psdCk_SmB&usqp=CAU");
+        }
+        .panel2{
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTVDC2RNPxj73OeGt41W3EDaD43GfH8HWit6Ue2qatCyLJNySw3&usqp=CAU");
+        }
+        .panel3{
+            background-image: url("https://thehustle.co/wp-content/uploads/2018/05/xxx-26.jpg");
+        }
+        .panel4{
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQTPOlBXOrkjAUwfw_VN003ShyNzsibXxTm9HRbDA_-pRwa2yVe&usqp=CAU");
+        }
+        .panel > * {
+            margin: 0;
+            width: 100%;
+            transition: transform 0.5s;
+            flex: 1 0 auto ;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .panel p:nth-child(2){
+            font-size: 2em;
+        }
+        .panel.open{
+            flex-grow: 5;
+            font-size: 45px;
+
+        }
+        .panel > *:first-child{ 
+            transform: translateY(-100%);
+        }
+        .panel.open-active > *:first-child{ 
+            transform: translateY(0);
+        }
+        .panel> *:last-child{ 
+            transform: translateY(100%);
+        }
+        .panel.open-active> *:last-child{ 
+            transform: translateY(0);
+        }
+        
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <div class="panels">
+            <div class="panel panel1">
+                <p>HEY</p>
+                <p>LET's</p>
+                <p>DANCE</p>
+            </div>
+            <div class="panel panel4">
+                <p>GIVE</p>
+                <p>ALL</p>
+                <p>ONCE</p>
+            </div>
+            <div class="panel panel3">
+                <p>TAKE</p>
+                <p>IT</p>
+                <p>TODAY</p>
+            </div>
+            <div class="panel panel2">
+                <p>GIVE</p>
+                <p>TAKE</p>
+                <p>RECEIVE</p>
+            </div>
+        </div>
+
+
+        <script>
+        
+            var elements = document.querySelectorAll('.panel');
+            elements.forEach(element => element.addEventListener('click', toggleOpen));
+            function toggleOpen(e){
+                this.classList.toggle('open');
+            }
+            elements.forEach(item=> item.addEventListener('transitionend',backtonormal));
+            function backtonormal(e){
+                if(e.propertyName.includes('flex')){
+                    this.classList.toggle('open-active');
+                }
+            }
+    
+        </script>
+    </body>
+</html>
